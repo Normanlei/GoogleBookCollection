@@ -20,7 +20,8 @@ const useStyles = makeStyles({
         flex: 1,
     },
     cardMedia: {
-        width: 160,
+        width: 300,
+        objectFit: 'scale-down'
     },
 });
 
@@ -55,7 +56,7 @@ export default function FeaturedPost(props) {
             return;
         }
 
-        setOpen({...open, open:false, error:false});
+        setOpen({ ...open, open: false, error: false });
     };
 
 
@@ -64,10 +65,10 @@ export default function FeaturedPost(props) {
         axios.post("/api/books", currList[i])
             .then(data => {
                 console.log(data);
-                setOpen({...open, open:true});
+                setOpen({ ...open, open: true });
             })
-            .catch(()=>{
-                setOpen({...open, open:true, error:true});
+            .catch(() => {
+                setOpen({ ...open, open: true, error: true });
             })
     }
 
@@ -103,7 +104,7 @@ export default function FeaturedPost(props) {
                     </CardActionArea>
                 </Grid>
             ))}
-            {open.error?(<Alert open={open.open} handleClose={handleClose} type="warning">The book has been saved to collection!</Alert>):(<Alert open={open.open} handleClose={handleClose} type="success">The book was saved to collection!</Alert>)}
+            {open.error ? (<Alert open={open.open} handleClose={handleClose} type="warning">The book has been saved to collection!</Alert>) : (<Alert open={open.open} handleClose={handleClose} type="success">The book was saved to collection!</Alert>)}
         </div>
     );
 }
